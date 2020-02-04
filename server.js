@@ -7,6 +7,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
+
 const database = {
   users: [
     {
@@ -32,7 +33,9 @@ app.get('/', (req, res) => {
 });
 
 app.post('/signin', (req, res) => {
-  bcrypt.compare('');
+  // bcrypt.compare(password, hash, function(err, res){
+
+  // })
   if (
     req.body.email === database.users[0].email &&
     req.body.password === database.users[0].password
@@ -52,7 +55,7 @@ app.post('/register', (req, res) => {
     id: '3',
     name: name,
     email: email,
-    password: password,
+
     entries: 0,
     joined: new Date(),
   });
