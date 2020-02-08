@@ -45,17 +45,12 @@ app.get('/', (req, res) => {
 });
 
 app.post('/signin', (req, res) => {
-  // bcrypt.compare(password, hash, function(err, res){
-
-  // })
-  if (
-    req.body.email === database.users[0].email &&
-    req.body.password === database.users[0].password
-  ) {
-    res.json(database.users[0]);
-  } else {
-    res.status(400).json('error login');
-  }
+  db.select('email', 'hash')
+    .from('login')
+    .where('email', '=', req.body.email)
+    .then(data => {
+      console.log(data);
+    });
 });
 
 app.post('/register', (req, res) => {
