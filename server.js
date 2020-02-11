@@ -7,6 +7,7 @@ const knex = require('knex');
 const register = require('./contollers/register');
 const signin = require('./contollers/signin');
 const profile = require('./contollers/profile');
+const image = require('./contollers/image');
 
 const app = express();
 
@@ -40,13 +41,7 @@ app.get('/profile/:id', (req, res) => {
 });
 
 app.put('/image', (req, res) => {
-  const { id } = req.body;
-  db('users')
-    .where('id', '=', id)
-    .increment('entries', 1)
-    .returning('entries')
-    .then(entries => res.json(entries))
-    .catch(err => res.status(400).json('unable to get entries'));
+  image.handleImage(req, res, db);
 });
 
 app.listen(3000, () => {
