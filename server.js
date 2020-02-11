@@ -6,6 +6,8 @@ const knex = require('knex');
 
 const register = require('./contollers/register');
 const signin = require('./contollers/signin');
+const profile = require('./contollers/profile');
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -34,21 +36,7 @@ app.post('/register', (req, res) => {
 });
 
 app.get('/profile/:id', (req, res) => {
-  const { id } = req.params;
-
-  db.select('*')
-    .from('users')
-    .where({
-      id: id,
-    })
-    .then(user => {
-      if (user.length) {
-        res.json(user)[0];
-      } else {
-        res.status(400).json('user not found');
-      }
-    })
-    .catch(err => res.status(400).json('error getting user'));
+  profile.handleProfile(req, res, db);
 });
 
 app.put('/image', (req, res) => {
