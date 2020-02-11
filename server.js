@@ -44,7 +44,7 @@ app.put('/image', (req, res) => {
   image.handleImage(req, res, db);
 });
 
-app.put('/imageUrl', (req, res) => {
+app.post('/imageurl', (req, res) => {
   image.handleApiCall(req, res);
 });
 
