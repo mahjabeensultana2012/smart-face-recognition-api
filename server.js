@@ -17,7 +17,7 @@ app.use(cors());
 const db = knex({
   client: 'pg',
   connection: {
-    host: '127.0.0.1',
+    host: 'postgresql-deep-33990',
     user: 'mahjabeensultana',
     password: '',
     database: 'smart-face-recognition',
